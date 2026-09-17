@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Property Gallery</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .gallery {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 16px 16px 8px 16px;
+    }
+
+    .main-slider {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+      margin-bottom: 12px;
+    }
+
+    .slides {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.4s ease-in-out;
+    }
+
+    .slide.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      border: none;
+      background: rgba(0, 0, 0, 0.45);
+      color: #fff;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .nav-btn:hover {
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    .nav-btn.prev {
+      left: 8px;
+    }
+
+    .nav-btn.next {
+      right: 8px;
+    }
+
+    .thumb-strip {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 4px 0;
+    }
+
+    .thumb {
+      flex: 0 0 auto;
+      height: 72px;
+      border-radius: 8px;
+      border: 2px solid transparent;
+      object-fit: cover;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: opacity 0.2s, border-color 0.2s, transform 0.2s;
+    }
+
+    .thumb.active {
+      opacity: 1;
+      border-color: #ffffff;
+      box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.35);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 600px) {
+      .nav-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
+      }
+      .thumb {
+        height: 56px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="gallery">
+    <div class="main-slider">
+      <div class="slides">
+        <div class="slide active"><img src="images/1.jpg"  alt=""></div>
+        <div class="slide"><img src="images/2.jpg"  alt=""></div>
+        <div class="slide"><img src="images/3.jpg"  alt=""></div>
+        <div class="slide"><img src="images/4.jpg"  alt=""></div>
+        <div class="slide"><img src="images/5.jpg"  alt=""></div>
+        <div class="slide"><img src="images/6.jpg"  alt=""></div>
+        <div class="slide"><img src="images/7.jpg"  alt=""></div>
+        <div class="slide"><img src="images/8.jpg"  alt=""></div>
+        <div class="slide"><img src="images/9.jpg"  alt=""></div>
+        <div class="slide"><img src="images/10.jpg" alt=""></div>
+        <div class="slide"><img src="images/11.jpg" alt=""></div>
+        <div class="slide"><img src="images/12.jpg" alt=""></div>
+        <div class="slide"><img src="images/13.jpg" alt=""></div>
+        <div class="slide"><img src="images/14.jpg" alt=""></div>
+        <div class="slide"><img src="images/15.jpg" alt=""></div>
+        <div class="slide"><img src="images/16.jpg" alt=""></div>
+      </div>
+
+      <button class="nav-btn prev" id="prevBtn" aria-label="Previous image">&#10094;</button>
+      <button class="nav-btn next" id="nextBtn" aria-label="Next image">&#10095;</button>
+    </div>
+
+    <div class="thumb-strip">
+      <img class="thumb active" src="images/1.jpg"  data-index="0" alt="">
+      <img class="thumb"        src="images/2.jpg"  data-index="1" alt="">
+      <img class="thumb"        src="images/3.jpg"  data-index="2" alt="">
+      <img class="thumb"        src="images/4.jpg"  data-index="3" alt="">
+      <img class="thumb"        src="images/5.jpg"  data-index="4" alt="">
+      <img class="thumb"        src="images/6.jpg"  data-index="5" alt="">
+      <img class="thumb"        src="images/7.jpg"  data-index="6" alt="">
+      <img class="thumb"        src="images/8.jpg"  data-index="7" alt="">
+      <img class="thumb"        src="images/9.jpg"  data-index="8" alt="">
+      <img class="thumb"        src="images/10.jpg" data-index="9" alt="">
+      <img class="thumb"        src="images/11.jpg" data-index="10" alt="">
+      <img class="thumb"        src="images/12.jpg" data-index="11" alt="">
+      <img class="thumb"        src="images/13.jpg" data-index="12" alt="">
+      <img class="thumb"        src="images/14.jpg" data-index="13" alt="">
+      <img class="thumb"        src="images/15.jpg" data-index="14" alt="">
+      <img class="thumb"        src="images/16.jpg" data-index="15" alt="">
+    </div>
+  </div>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll(".slide"));
+    const thumbs = Array.from(document.querySelectorAll(".thumb"));
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    let currentIndex = 0;
+
+    function showSlide(index) {
+      slides[currentIndex].classList.remove("active");
+      thumbs[currentIndex].classList.remove("active");
+
+      currentIndex = (index + slides.length) % slides.length;
+
+      slides[currentIndex].classList.add("active");
+      thumbs[currentIndex].classList.add("active");
+
+      thumbs[currentIndex].scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "center"
+      });
+    }
+
+    function nextSlide() {
+      showSlide(currentIndex + 1);
+    }
+
+    function prevSlide() {
+      showSlide(currentIndex - 1);
+    }
+
+    nextBtn.addEventListener("click", nextSlide);
+    prevBtn.addEventListener("click", prevSlide);
+
+    thumbs.forEach(thumb => {
+      thumb.addEventListener("click", () => {
+        const index = parseInt(thumb.dataset.index, 10);
+        showSlide(index);
+      });
+    });
+  </script>
+</body>
+</html>
